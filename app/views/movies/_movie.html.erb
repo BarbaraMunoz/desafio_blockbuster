@@ -1,0 +1,21 @@
+<div id="<%= dom_id movie %>">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Nombre Película: <%= movie.name %></h4>
+      <p class="card-text">
+        Cliente actual:
+        <% if movie.clients.present? %>
+          <% movie.clients.each do |cliente| %>
+            <li><%= cliente.name %></li>
+          <% end %>
+        <% else %>
+          Película disponible para arriendo
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="btn-group mt-5 mb-5">
+    <td><%= link_to "Editar película", edit_movie_path(movie), class: "btn btn-outline-warning btn-sm" %></td>
+    <td><%= button_to "Eliminar película", @movie, method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+  </div>
+</div>

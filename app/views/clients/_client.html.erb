@@ -1,0 +1,20 @@
+<div id="<%= dom_id client %>">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Cliente: <%= client.id %></h4>
+      <h4 class="card-title">Edad Cliente: <%= client.age %></h4>
+      <p class="card-text">
+        Película arrendada:
+        <% if client.movie.nil?%>
+          No posee
+        <% else %>
+          <%= client.movie.name %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="btn-group mt-5 mb-5">
+    <td><%= link_to "Editar cliente", edit_client_path(client), class: "btn btn-outline-warning btn-sm" %></td>
+    <td><%= button_to "Eliminar cliente", @client, method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+  </div>
+</div>

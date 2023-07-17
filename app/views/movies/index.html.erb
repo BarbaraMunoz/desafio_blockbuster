@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+<h1 class="centrar-h1">Catálogo de Películas</h1>
+  <p>
+    <%= link_to "Nueva Película", new_movie_path, class: "btn btn btn-primary btn-sm" %>
+  </p>
+  <%== pagy_bootstrap_nav(@pagy) %> <!--gema pagy-->
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Película</th>
+          <th>Cliente actual</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movies.each do |movie| %>
+          <tr>
+            <td><%= movie.id %></td>
+            <td><%= movie.name %></td>
+            <td>
+              <% if movie.clients.present? %>
+                <ul>
+                  <% movie.clients.each do |cliente| %>
+                    <li><%= cliente.name %></li>
+                  <% end %>
+                </ul>
+                <% else %>
+                  Película disponible
+                <% end %>
+            </td>
+            <td>
+              <div class="btn-group">
+                <%= link_to "Ver detalle", movie, class: "btn btn-outline-primary btn-sm" %>
+                <%= link_to "Editar", edit_movie_path(movie), class: "btn btn-outline-warning btn-sm" %>
+                <%= button_to "Eliminar", movie, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
